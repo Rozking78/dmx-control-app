@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=DMX Visualizer Control
+Comment=Steam Deck controller for DMX Visualizer
+Exec=/home/deck/DMX-Visualizer/dmx-control-app/launch.sh
+Icon=/home/deck/DMX-Visualizer/dmx-control-app/assets/icon.png
+Terminal=false
+Type=Application
+Categories=AudioVideo;Video;Utility;
+Keywords=dmx;visualizer;lighting;control;
+StartupWMClass=dmx-visualizer-control

@@ -1,0 +1,278 @@
+/* Retro Theme - Optimized for Steam Deck */
+
+QMainWindow {
+    background-color: rgb(5, 5, 15);
+}
+
+QWidget {
+    background-color: transparent;
+    color: rgb(230, 255, 255);
+    font-family: "Sans", sans-serif;
+    font-size: 16px;
+}
+
+/* Tabs - Large and touch friendly */
+QTabWidget::pane {
+    border: none;
+    background: rgb(5, 5, 15);
+}
+
+QTabBar::tab {
+    background: rgb(15, 15, 36);
+    color: rgb(128, 153, 179);
+    padding: 16px 32px;
+    margin: 2px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+QTabBar::tab:selected {
+    background: rgba(0, 255, 255, 0.2);
+    color: #00ffff;
+    border-bottom: 3px solid #00ffff;
+}
+
+QTabBar::tab:hover:!selected {
+    background: rgba(0, 255, 255, 0.1);
+}
+
+/* Buttons - Large touch targets */
+QPushButton {
+    background: rgb(20, 25, 45);
+    color: rgb(180, 200, 220);
+    border: 2px solid rgb(50, 65, 95);
+    border-radius: 8px;
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    min-height: 28px;
+}
+
+QPushButton:hover {
+    border-color: #00ffff;
+    color: #00ffff;
+}
+
+QPushButton:pressed {
+    background: rgba(0, 255, 255, 0.2);
+}
+
+QPushButton:focus {
+    border: 3px solid #00ffff;
+    background: rgba(0, 255, 255, 0.15);
+}
+
+QPushButton#success {
+    background: #33ff66;
+    color: black;
+    border-color: #33ff66;
+}
+
+QPushButton#danger {
+    background: #ff1a4d;
+    color: white;
+    border-color: #ff1a4d;
+}
+
+/* Inputs - Large and clear */
+QLineEdit, QSpinBox, QDoubleSpinBox {
+    background: rgb(15, 20, 35);
+    color: white;
+    border: 2px solid rgb(50, 65, 95);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 18px;
+    min-height: 28px;
+}
+
+QLineEdit:focus, QSpinBox:focus, QDoubleSpinBox:focus {
+    border: 3px solid #00ffff;
+}
+
+/* Combo boxes */
+QComboBox {
+    background: rgb(15, 20, 35);
+    color: white;
+    border: 2px solid rgb(50, 65, 95);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 16px;
+    min-height: 28px;
+}
+
+QComboBox:focus {
+    border: 3px solid #00ffff;
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 40px;
+}
+
+QComboBox::down-arrow {
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #00ffff;
+}
+
+QComboBox QAbstractItemView {
+    background: rgb(15, 20, 35);
+    border: 2px solid #00ffff;
+    selection-background-color: rgba(0, 255, 255, 0.3);
+}
+
+/* Sliders - Easy to grab */
+QSlider::groove:horizontal {
+    background: rgb(25, 30, 50);
+    height: 16px;
+    border-radius: 8px;
+}
+
+QSlider::handle:horizontal {
+    background: #00ffff;
+    width: 32px;
+    height: 32px;
+    margin: -8px 0;
+    border-radius: 16px;
+}
+
+QSlider:focus::handle:horizontal {
+    background: #ffff00;
+    border: 3px solid #00ffff;
+}
+
+/* Lists - Large items */
+QListWidget {
+    background: rgb(10, 12, 25);
+    border: 2px solid rgb(50, 65, 95);
+    border-radius: 8px;
+}
+
+QListWidget::item {
+    padding: 16px;
+    margin: 4px;
+    border-radius: 6px;
+}
+
+QListWidget::item:selected {
+    background: rgba(0, 255, 255, 0.25);
+    border: 2px solid #00ffff;
+}
+
+QListWidget:focus {
+    border: 3px solid #00ffff;
+}
+
+/* Tables */
+QTableWidget {
+    background: rgb(10, 12, 25);
+    border: 2px solid rgb(50, 65, 95);
+    border-radius: 8px;
+    gridline-color: rgb(40, 50, 70);
+}
+
+QTableWidget::item {
+    padding: 12px;
+}
+
+QTableWidget::item:selected {
+    background: rgba(0, 255, 255, 0.25);
+}
+
+QHeaderView::section {
+    background: rgb(20, 25, 45);
+    color: #00ffff;
+    padding: 14px;
+    font-weight: bold;
+    border: none;
+}
+
+/* Scroll bars - Wide for touch */
+QScrollBar:vertical {
+    background: rgb(15, 18, 30);
+    width: 20px;
+    border-radius: 10px;
+    margin: 4px;
+}
+
+QScrollBar::handle:vertical {
+    background: rgb(60, 75, 100);
+    border-radius: 8px;
+    min-height: 60px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #00ffff;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0;
+}
+
+/* Labels */
+QLabel {
+    color: rgb(200, 220, 240);
+    font-size: 16px;
+}
+
+QLabel#heading {
+    font-size: 22px;
+    color: #00ffff;
+    font-weight: bold;
+    padding: 8px 0;
+}
+
+QLabel#subheading {
+    font-size: 18px;
+    color: #00ffff;
+    font-weight: bold;
+}
+
+/* Panels/Frames */
+QFrame#panel {
+    background: rgb(12, 15, 28);
+    border: 2px solid rgb(40, 55, 80);
+    border-radius: 12px;
+    padding: 8px;
+}
+
+/* Checkboxes - Large */
+QCheckBox {
+    font-size: 16px;
+    spacing: 12px;
+}
+
+QCheckBox::indicator {
+    width: 28px;
+    height: 28px;
+    border: 2px solid rgb(60, 75, 100);
+    border-radius: 6px;
+    background: rgb(20, 25, 40);
+}
+
+QCheckBox::indicator:checked {
+    background: #00ffff;
+    border-color: #00ffff;
+}
+
+QCheckBox:focus::indicator {
+    border: 3px solid #00ffff;
+}
+
+/* Group boxes */
+QGroupBox {
+    background: rgb(12, 15, 28);
+    border: 2px solid rgb(40, 55, 80);
+    border-radius: 12px;
+    margin-top: 20px;
+    padding: 20px 12px 12px 12px;
+    font-size: 16px;
+}
+
+QGroupBox::title {
+    color: #ff00cc;
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 4px 12px;
+    font-weight: bold;
+}

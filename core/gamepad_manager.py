@@ -28,6 +28,7 @@ class GamepadWorker(QThread):
         self.running = False
         self.joystick = None
         self.last_button_states = {}
+        self.last_hat_state = (0, 0)
         self.deadzone = 0.2
 
     def run(self):
@@ -75,11 +76,35 @@ class GamepadWorker(QThread):
                     if abs(value) > self.deadzone:
                         self.axis_moved.emit(i, value)
 
-                # D-Pad (hat)
+                # D-Pad (hat) - convert to button events
                 for i in range(self.joystick.get_numhats()):
                     hat = self.joystick.get_hat(i)
-                    # Convert hat to button-like events
                     # hat = (x, y) where x: -1=left, 1=right, y: -1=down, 1=up
+
+                    # Map hat directions to virtual button indices
+                    # 12=up, 13=down, 14=left, 15=right
+                    hat_buttons = {
+                        (0, 1): 12,   # Up
+                        (0, -1): 13,  # Down
+                        (-1, 0): 14,  # Left
+                        (1, 0): 15,   # Right
+                        (1, 1): 12,   # Up-Right (emit up)
+                        (-1, 1): 12,  # Up-Left (emit up)
+                        (1, -1): 13,  # Down-Right (emit down)
+                        (-1, -1): 13, # Down-Left (emit down)
+                    }
+
+                    # Check if hat state changed
+                    if hat != self.last_hat_state:
+                        # Release old direction
+                        if self.last_hat_state in hat_buttons:
+                            self.button_released.emit(hat_buttons[self.last_hat_state])
+
+                        # Press new direction
+                        if hat in hat_buttons:
+                            self.button_pressed.emit(hat_buttons[hat])
+
+                        self.last_hat_state = hat
 
             self.msleep(16)  # ~60 Hz polling
 

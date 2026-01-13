@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel,
     QListWidget, QListWidgetItem, QPushButton,
     QDialog, QFormLayout, QSpinBox, QDoubleSpinBox,
-    QInputDialog
+    QInputDialog, QMessageBox
 )
 from PyQt5.QtCore import Qt
 
@@ -26,6 +26,10 @@ class OutputsView(QWidget):
         header = QHBoxLayout()
         header.addWidget(QLabel("OUTPUTS"))
         header.addStretch()
+
+        add_display_btn = QPushButton("+ ADD DISPLAY")
+        add_display_btn.clicked.connect(self.add_display)
+        header.addWidget(add_display_btn)
 
         add_btn = QPushButton("+ ADD NDI")
         add_btn.clicked.connect(self.add_ndi)
@@ -64,6 +68,34 @@ class OutputsView(QWidget):
                 self.refresh()
             except:
                 pass
+
+    def add_display(self):
+        """Add a physical display output."""
+        try:
+            displays = self.api.get_displays()
+            if not displays:
+                QMessageBox.information(self, "No Displays", "No available displays found.")
+                return
+
+            # Build list of display names
+            display_names = []
+            for d in displays:
+                name = d.get('name', 'Unknown')
+                res = f"{d.get('width', '?')}x{d.get('height', '?')}"
+                display_names.append(f"{name} ({res})")
+
+            # Let user pick one
+            choice, ok = QInputDialog.getItem(
+                self, "Add Display Output", "Select display:",
+                display_names, 0, False
+            )
+            if ok and choice:
+                idx = display_names.index(choice)
+                display_id = displays[idx].get('id')
+                self.api.add_display_output(display_id)
+                self.refresh()
+        except Exception as e:
+            QMessageBox.warning(self, "Error", f"Failed to add display: {e}")
 
     def edit_output(self, item):
         output = item.data(Qt.UserRole)
